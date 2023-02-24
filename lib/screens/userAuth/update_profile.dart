@@ -19,12 +19,13 @@ class UpdateProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.kWhiteColor,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: AppColor.kWhiteColor,
+        backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
-       
+       leading: IconButton(color: Colors.black,
+        onPressed: (){AppNavigator.appNavigator(context, true, HomeScreen());}, icon: Icon(Icons.arrow_back_rounded)),
         title: Text(
            'Update Profile',
            style: TextStyle( 

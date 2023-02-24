@@ -2,7 +2,9 @@ import 'package:finelproject/appColors/app_color.dart';
 import 'package:finelproject/blocs/generat_color/cubit/gnerate_color_cubit.dart';
 import 'package:finelproject/blocs/task_model/cubit/task_model_cubit.dart';
 import 'package:finelproject/components/my_text.dart';
+import 'package:finelproject/enums/toast_states.dart';
 import 'package:finelproject/screens/edit_task.dart';
+import 'package:finelproject/utils/toast_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -13,7 +15,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../screens/task_detiles_screen.dart';
 import '../utils/app_navigator.dart';
 
-class TasksContainer extends StatelessWidget {
+class TasksContainer extends StatefulWidget {
   String? title;
   String? discription;
   String? status;
@@ -34,6 +36,11 @@ class TasksContainer extends StatelessWidget {
       });
 
   @override
+  State<TasksContainer> createState() => _TasksContainerState();
+}
+
+class _TasksContainerState extends State<TasksContainer> {
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<GnerateColorCubit, GnerateColorState>(
       listener: (context, state) {},
@@ -44,17 +51,17 @@ class TasksContainer extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: GestureDetector(
               onTap: () {
-                 print(id);
+                 print(widget.id);
                 AppNavigator.appNavigator(context,false,TaskDetailsScreen(
-                      image:image,
+                      image:widget.image,
                       color: kmaincolor,
-                      id: id!,
-                      title: title,
-                      status: status,
-                      discription: discription,
-                      startDate: startDate,
-                      endDate: endDate,
-                      posation: posation,
+                      id: widget.id!,
+                      title: widget.title,
+                      status: widget.status,
+                      discription: widget.discription,
+                      startDate: widget.startDate,
+                      endDate: widget.endDate,
+                      posation: widget.posation,
                     ));
               },
               child: Container(
@@ -76,14 +83,14 @@ class TasksContainer extends StatelessWidget {
                             child: MyText(
                               maxLines: 1,
                               color: AppColor.kWhiteColor,
-                              text: title ?? ' ',
+                              text: widget.title ?? ' ',
                               fontSize: 24.sp,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
                         MyText(
-                          text: status ?? '',
+                          text: widget.status ?? '',
                           fontSize: 16.sp,
                           fontWeight: FontWeight.bold,
                         ),
@@ -97,10 +104,10 @@ class TasksContainer extends StatelessWidget {
                         Expanded(
                           child: MyText(
                             color: AppColor.kWhiteColor,
-                            text: discription ?? '',
+                            text: widget.discription ?? '',
                             maxLines: 5,
-                            fontSize: 19.sp,
-                            fontWeight: FontWeight.w200,
+                            fontSize: 22.sp,
+                            fontWeight: FontWeight.w300,
                           ),
                         ),
                         SizedBox(
@@ -108,7 +115,12 @@ class TasksContainer extends StatelessWidget {
                         ),
                      BlocConsumer<TaskModelCubit, TaskModelState>(
                       listener: (context, state) {
-                       
+                       if (state is DeleteTaskSuccssess){
+                        ToastConfig.showToast(msg: 'delete Success', toastStates: ToastStates.Success);
+                        setState(() {
+                          
+                        });
+                       }
                       },
                       builder: (context, state) {
                         var cubit =TaskModelCubit.get(context);
@@ -116,21 +128,21 @@ class TasksContainer extends StatelessWidget {
                           children: [
                             IconButton(
                                 onPressed: () {
-                                  print(id);
+                                  print(widget.id);
                                   AppNavigator.appNavigator(context, false, EditTaskScreen(
-                                  discription: discription,
-                                  startDate: startDate, 
-                                  endDate: endDate,
-                                   status: status,
-                                   title: title,
-                                    id: id!));},
+                                  discription: widget.discription,
+                                  startDate: widget.startDate, 
+                                  endDate: widget.endDate,
+                                   status: widget.status,
+                                   title: widget.title,
+                                    id: widget.id!));},
                                 icon: Icon(
                                   Icons.edit,
                                   color: AppColor.kWhiteColor,
                                 )),
                             IconButton(
                                 onPressed: () {
-                                  cubit.deleteTask(id: id!);
+                                  cubit.deleteTask(id: widget.id!);
                                 },
                                 icon: Icon(
                                   Icons.delete,
@@ -148,7 +160,7 @@ class TasksContainer extends StatelessWidget {
                     const Divider(
                       endIndent: 60,
                       indent: 10,
-                      color: Colors.white,
+                      color: Colors.black,
                       thickness: 3,
                     ),
                     SizedBox(
@@ -165,7 +177,7 @@ class TasksContainer extends StatelessWidget {
                         ),
                         MyText(
                           color: AppColor.kWhiteColor,
-                          text: startDate ?? '',
+                          text: widget.startDate ?? '',
                           fontWeight: FontWeight.w400,
                           fontSize: 15.sp,
                         ),
@@ -174,7 +186,7 @@ class TasksContainer extends StatelessWidget {
                         ),
                         MyText(
                           color: AppColor.kWhiteColor,
-                          text: endDate ?? '',
+                          text: widget.endDate ?? '',
                           fontWeight: FontWeight.w400,
                           fontSize: 15.sp,
                         ),

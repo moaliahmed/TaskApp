@@ -118,11 +118,11 @@ class EditTaskScreen extends StatelessWidget {
                             style: TextStyle(fontSize: 22),
                           ),SizedBox(width: 10,),
                           Container(
-                        decoration : BoxDecoration(color: AppColor.kBlack,borderRadius: BorderRadius.circular(30)),
+                        decoration : BoxDecoration(color: Colors.black,borderRadius: BorderRadius.circular(30)),
                         alignment: Alignment.center,
                         width: 120.w,
                         height: 30.h,
-                        child: status!=null ? Text('$status',style: TextStyle(color: AppColor.kWhiteColor,fontSize: 22.sp),):Text('null',style: TextStyle(color: AppColor.kWhiteColor,fontSize: 18.sp)) ,
+                        child: status!=null ? Text('$status',style: TextStyle(color: Colors.white,fontSize: 22.sp),):Text('null',style: TextStyle(color: AppColor.kWhiteColor,fontSize: 18.sp)) ,
                         ),
                         ],
                       ),

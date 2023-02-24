@@ -1,3 +1,4 @@
+import 'package:finelproject/appColors/app_color.dart';
 import 'package:finelproject/blocs/Logout/cubit/logout_cubit.dart';
 import 'package:finelproject/blocs/Refrech/cubit/refrech_cubit.dart';
 import 'package:finelproject/blocs/task_model/cubit/task_model_cubit.dart';
@@ -18,9 +19,8 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key, this.userName});
+  HomeScreen({super.key, });
 
-  String? userName;
   String? userNametoo;
 
   @override
@@ -29,7 +29,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   void initState() {
+    TaskModelCubit.get(context).appRefresh();
     TaskModelCubit.get(context).getTask();
+    
     super.initState();
   }
 
@@ -50,8 +52,10 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (context, state) {
         var cubit = TaskModelCubit.get(context);
         return Scaffold(
-          appBar: AppBar(),
-          body: cubit.jGetTask == null
+          appBar: AppBar(
+            backgroundColor: AppColor.kmainColor,
+          ),
+          body: cubit.refresh==null
               ? Center(child: CircularProgressIndicator())
               : SafeArea(
                   child: Column(
@@ -65,11 +69,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           Container(
                             child: Row(
                               children: [
+                                SizedBox(width: 15,),
                                 Text(
                                   'Morning ,',
                                   style: TextStyle(fontSize: 22),
                                 ),
-                                Text(' ${widget.userName}',
+                                Text(' ${cubit.refresh?.user?.name}',
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold))
@@ -127,9 +132,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 300,
                         child: PieChart(
                           dataMap: {
-                            "new": TaskModelCubit.get(context).newCoutner.toDouble(),
-                            "completed": TaskModelCubit.get(context).completedCoutner.toDouble(),
-                            "in_progress": TaskModelCubit.get(context).inProgressCoutner.toDouble(),
+                            "new": TaskModelCubit.get(context)
+                                .newCoutner
+                                .toDouble(),
+                            "completed": TaskModelCubit.get(context)
+                                .completedCoutner
+                                .toDouble(),
+                            "in_progress": TaskModelCubit.get(context)
+                                .inProgressCoutner
+                                .toDouble(),
                           },
                           animationDuration: Duration(milliseconds: 800),
                           chartLegendSpacing: 32,
@@ -195,23 +206,23 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           )
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),
           floatingActionButton: FloatingActionButton(
+              backgroundColor: AppColor.kDeepOrange,
               onPressed: () {
                 AppNavigator.appNavigator(context, false, AddTaskScreen());
               },
               child: Icon(Icons.add)),
           drawer: Drawer(
-            // Add a ListView to the drawer. This ensures the user can scroll
-            // through the options in the drawer if there isn't enough vertical
-            // space to fit everything.
             child: ListView(
-              // Important: Remove any padding from the ListView.
               padding: EdgeInsets.zero,
               children: [
+                SizedBox(
+                  height: 70,
+                ),
                 Container(
                   height: 178,
                   child: CircleAvatar(

@@ -13,15 +13,9 @@ class GnerateColorCubit extends Cubit<GnerateColorState> {
   Random random = Random();
   int? index;
   List colorsList = [
-    Colors.amber,
-    Colors.green,
-    Colors.redAccent,
-    Colors.blueAccent,
-    Colors.blueGrey,
-    Colors.pink,
-    Colors.blue[800],
-    Colors.cyan,
-    Colors.brown
+   Color(0xffcec7ff),
+   Color(0xfff6c6d8),
+   Color(0xffa1ffb7)
   ];
   generateColor() {
     index = random.nextInt(colorsList.length);

@@ -36,7 +36,7 @@ class AppRoot extends StatelessWidget {
               create: (context) => LoginCubit(),
             ),
             BlocProvider(
-              create: (context) => TaskModelCubit(),
+              create: (context) => TaskModelCubit()..getTask(),
             ),
             BlocProvider(
               create: (context) => GnerateColorCubit(),
@@ -55,13 +55,13 @@ class AppRoot extends StatelessWidget {
             ),
           ],
           child: MaterialApp (
-            
+            debugShowCheckedModeBanner: false,
             theme: ThemeData(
               primaryColor: AppColor.kDeepOrange
               
 
             ),
-            home: LoginScreen(),
+            home:  LoginScreen(),
           ),
         );
       },

@@ -21,7 +21,7 @@ class SharedPrefrenceHelper {
 
   static dynamic getData({required String key})
   {
-    return sharedPreferences!.get(key);
+    return sharedPreferences?.get(key);
   }
 
 

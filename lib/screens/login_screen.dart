@@ -5,6 +5,8 @@ import 'package:finelproject/components/my_text_field.dart';
 import 'package:finelproject/enums/toast_states.dart';
 import 'package:finelproject/screens/home_screen.dart';
 import 'package:finelproject/screens/register_screen.dart';
+import 'package:finelproject/sharedPreferans/sharedPreferance.dart';
+import 'package:finelproject/sharedPreferans/shared_preferans_keys.dart';
 import 'package:finelproject/utils/app_navigator.dart';
 import 'package:finelproject/utils/toast_config.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +24,7 @@ class LoginScreen extends StatelessWidget {
       listener: (context, state) {
         if(state is LoginSuccess){
           ToastConfig.showToast(msg: 'Success', toastStates: ToastStates.Success);
-          AppNavigator.appNavigator(context, true, HomeScreen(userName: LoginCubit.get(context).jLogin!.user!.name,));
+          AppNavigator.appNavigator(context, true, HomeScreen());
         }
         else if (state is LoginError){
           ToastConfig.showToast(msg: 'error', toastStates: ToastStates.Error);
@@ -30,9 +32,10 @@ class LoginScreen extends StatelessWidget {
       },
       builder: (context, state) {
         var cubit = LoginCubit.get(context);
-        return Scaffold(
+        return  Scaffold(
           backgroundColor: Color(0xffffffff),
-          body: SingleChildScrollView(
+          body:
+           SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -63,6 +66,7 @@ class LoginScreen extends StatelessWidget {
                     child: Column(
                       
                       children: [
+                        IconButton(onPressed: (){print(SharedPrefrenceHelper.getData(key:'token'));}, icon: Icon(Icons.abc)),
                       SizedBox(
                         height: 25,
                       ),

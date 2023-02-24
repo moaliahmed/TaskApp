@@ -20,12 +20,13 @@ class ChangePasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.kWhiteColor,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        backgroundColor: AppColor.kWhiteColor,
-       
+        backgroundColor: Colors.white,
+       leading: IconButton(color: Colors.black,
+        icon: Icon(Icons.arrow_back_sharp),onPressed: (){AppNavigator.appNavigator(context, true, HomeScreen());}),
         title: MyText(
           text: 'Change password',
           fontSize: 24.sp,
