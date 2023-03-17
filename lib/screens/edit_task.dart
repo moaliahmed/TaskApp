@@ -54,8 +54,9 @@ class EditTaskScreen extends StatelessWidget {
             backgroundColor: Colors.indigo[50],
             elevation: 0,
           ),
-          floatingActionButton: FloatingActionButton(onPressed: (){
-            
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.orangeAccent,
+            onPressed: (){
             cubit.EditTask(
               myState: cubit.status,
               id: id,
@@ -118,7 +119,7 @@ class EditTaskScreen extends StatelessWidget {
                             style: TextStyle(fontSize: 22),
                           ),SizedBox(width: 10,),
                           Container(
-                        decoration : BoxDecoration(color: Colors.black,borderRadius: BorderRadius.circular(30)),
+                        decoration : BoxDecoration(color: Color(0xff56494E),borderRadius: BorderRadius.circular(30)),
                         alignment: Alignment.center,
                         width: 120.w,
                         height: 30.h,
@@ -158,6 +159,11 @@ class EditTaskScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+                Divider(
+                  thickness: 2,
+                  indent: 10,
+                  endIndent: 10,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -173,7 +179,12 @@ class EditTaskScreen extends StatelessWidget {
                     )
                   ],
                 ),
-                
+                SizedBox(height: 10,),
+                 Divider(
+                  thickness: 2,
+                  indent: 10,
+                  endIndent: 10,
+                ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 25,vertical: 10),
                   child: Column(
@@ -182,15 +193,15 @@ class EditTaskScreen extends StatelessWidget {
                       Text('*Attach',style: TextStyle(fontSize: 20),),
                       TextButton(onPressed: (){}, child: Row(
                         children: [
-                          Icon(Icons.keyboard_voice_outlined),
-                          Text('record voice'),
+                          Icon(Icons.keyboard_voice_outlined,color: Colors.orangeAccent,),
+                          Text('record voice',style: TextStyle(color: Colors.orangeAccent,fontSize: 18),),
                         ],
                       ) ),
                     
                       TextButton(onPressed: (){}, child: Row(
                         children: [
-                          Icon(Icons.image),
-                          Text('Add Image'),
+                          Icon(Icons.image,color: Colors.orangeAccent,),
+                          Text('Add Image',style: TextStyle(color: Colors.orangeAccent,fontSize: 18)),
                         ],
                       ) )
                     

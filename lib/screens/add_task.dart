@@ -1,6 +1,7 @@
 
 import 'dart:io';
 
+import 'package:finelproject/appColors/app_color.dart';
 import 'package:finelproject/components/button_Time.dart';
 import 'package:finelproject/components/my_button.dart';
 import 'package:finelproject/components/my_text_field.dart';
@@ -83,6 +84,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             elevation: 0,
           ),
           floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.orangeAccent,
             onPressed: (){
             cubit.addTask();
             print('click');
@@ -144,6 +146,11 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     )
                   ],
                 ),
+                SizedBox(height: 10,), Divider(
+                  thickness: 2,
+                  indent: 10,
+                  endIndent: 10,
+                ),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
@@ -157,6 +164,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       SizedBox(
                         height: 50,
                         child: ElevatedButton(
+                          style: ButtonStyle(backgroundColor: MaterialStateProperty.all(AppColor.kmainColor)),
                             onPressed: () async {
                               cubit.ReminderTime = await showTimePicker(
                                   context: context,
@@ -172,6 +180,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       )
                     ],
                   ),
+                ), Divider(
+                  thickness: 2,
+                  indent: 10,
+                  endIndent: 10,
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 25,vertical: 10),
@@ -188,8 +200,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
                       }, child: Row(
                         children: [
-                          Icon(recorder.isRecording ? Icons.stop : Icons.mic),
-                          Text('record voice'),SizedBox(width: 90,),
+                          Icon(recorder.isRecording ? Icons.stop : Icons.mic,color: AppColor.kmainColor,),
+                          Text('record voice',style: TextStyle(color: AppColor.kmainColor,fontSize: 18),),SizedBox(width: 90,),
                           StreamBuilder<RecordingDisposition>(
                             stream: recorder.onProgress,
                             builder: (context, snapshot) {
@@ -197,15 +209,17 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                             String twoDigits(int n)=>n.toString().padLeft(n);
                             final twoDigitMinutes =twoDigits(duration.inMinutes.remainder(60));
                             final twoDigitSeconds =twoDigits(duration.inSeconds.remainder(60));
-                            return Text( '$twoDigitMinutes : $twoDigitSeconds',style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),);
+                            return Text( '$twoDigitMinutes : $twoDigitSeconds',style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.orangeAccent ),);
                           },)
                         ],
                       ) ),
                     
-                      TextButton(onPressed: (){}, child: Row(
+                      TextButton(
+                        
+                        onPressed: (){}, child: Row(
                         children: [
-                          Icon(Icons.image),
-                          Text('Add Image'),
+                          Icon(Icons.image,color: AppColor.kmainColor,),
+                          Text('Add Image',style: TextStyle(color: AppColor.kmainColor,fontSize: 18),),
                         ],
                       ) )
                     

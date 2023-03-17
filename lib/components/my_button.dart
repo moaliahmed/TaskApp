@@ -38,7 +38,7 @@ bool active ;
             active?
             LinearGradient(   
               colors: [
-              AppColor.kmainColor,
+              AppColor.kmainColor, 
               AppColor.kmainColor,
               Colors.teal[100]!
             ]

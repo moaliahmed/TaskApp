@@ -66,7 +66,7 @@ class TaskDetailsScreen extends StatelessWidget {
                         alignment: Alignment.center,
                         width: 120.w,
                         height: 40.h,
-                        child: status!=null ? Text('$status',style: TextStyle(color: AppColor.kWhiteColor,fontSize: 22.sp),):Text('null',style: TextStyle(color: AppColor.kWhiteColor,fontSize: 18.sp)) ,
+                        child: status!=null ? Text('$status',style: TextStyle(color: Colors.white,fontSize: 22.sp),):Text('null',style: TextStyle(color: AppColor.kWhiteColor,fontSize: 18.sp)) ,
                         ),
                     SizedBox(
                       height: 20.h,
@@ -177,6 +177,7 @@ class TaskDetailsScreen extends StatelessWidget {
                             text: 'Set as Complete !',
                             fontSize: 18.sp,
                             fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                           toggleColor: color,
                           backgroundColor: AppColor.kBlack,

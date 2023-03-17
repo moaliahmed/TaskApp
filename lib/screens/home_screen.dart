@@ -43,9 +43,9 @@ class _HomeScreenState extends State<HomeScreen> {
       "in_progress": TaskModelCubit.get(context).inProgressCoutner.toDouble(),
     };
     List<Color> colorList = [
-      Colors.redAccent,
-      Colors.blueAccent,
-      Colors.blueGrey,
+      Color(0xffA62639),
+      Color(0xff02CCC0),
+      Color(0xff56494E),
     ];
     return BlocConsumer<TaskModelCubit, TaskModelState>(
       listener: (context, state) {},

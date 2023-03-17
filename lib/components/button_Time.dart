@@ -1,3 +1,4 @@
+import 'package:finelproject/appColors/app_color.dart';
 import 'package:finelproject/blocs/task_model/cubit/task_model_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -28,7 +29,7 @@ String? con;
                     height: 50,
                     width: 160,
                      child: ElevatedButton(
-                      style: ButtonStyle(),
+                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(AppColor.kmainColor)),
                                       onPressed: () async {
                                         controller =
                                             await showDatePicker(
